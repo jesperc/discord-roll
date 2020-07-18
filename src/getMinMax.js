@@ -8,7 +8,6 @@ const getMinMax = (str) => {
       !isNaN(segments[1]) &&
       segments[1].length > 0
     ) {
-      console.log(segments)
       return {
         first: parseInt(segments[0]),
         second: parseInt(segments[1]),
