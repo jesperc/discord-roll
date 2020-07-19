@@ -14,7 +14,6 @@ client.on('ready', (event) => {
 
 client.on('error', (error) => {
   console.error(error)
-  throw new Error(error)
 })
 
 client.on('disconnect', (event) => {
@@ -46,5 +45,5 @@ client.on('message', (message) => {
 
 client.login(auth.token).catch((error) => {
   console.error(error)
-  throw new Error(error)
+  process.exit(1)
 })
