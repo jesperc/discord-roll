@@ -31,6 +31,14 @@ client.on('message', (message) => {
     return
   }
 
+  if (content.startsWith('!roll help')) {
+    sendMessage(`
+    # Manual for discord-roll
+    !roll - get number between 1 and 100
+    !roll min-max - get number between min and max
+    `)
+  }
+
   if (content.includes('-')) {
     const interval = getMinMax(content)
     if (interval) {
