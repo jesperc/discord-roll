@@ -8,10 +8,17 @@ const getMinMax = (str) => {
       !isNaN(segments[1]) &&
       segments[1].length > 0
     ) {
-      return {
-        first: parseInt(segments[0]),
-        second: parseInt(segments[1]),
-      }
+      const number1 = parseInt(segments[0])
+      const number2 = parseInt(segments[1])
+      return number1 <= number2
+        ? {
+            min: number1,
+            max: number2,
+          }
+        : {
+            min: number2,
+            max: number1,
+          }
     }
   } catch {}
   return null

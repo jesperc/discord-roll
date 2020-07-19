@@ -34,7 +34,7 @@ client.on('message', (message) => {
   if (content.includes('-')) {
     const interval = getMinMax(content)
     if (interval) {
-      sendMessage(getRandomInt(interval.first, interval.second).toString())
+      sendMessage(getRandomInt(interval.min, interval.max).toString())
     } else {
       sendMessage('invalid input, try again')
     }
