@@ -13,7 +13,7 @@ client.on('ready', (event) => {
 })
 
 client.on('error', (error) => {
-  console.log(error)
+  console.error(error)
   throw new Error(error)
 })
 
@@ -45,6 +45,6 @@ client.on('message', (message) => {
 })
 
 client.login(auth.token).catch((error) => {
-  console.log(error)
+  console.error(error)
   throw new Error(error)
 })
