@@ -8,16 +8,31 @@ const client = new Discord.Client()
 const DEFAULT_MIN = 1
 const DEFAULT_MAX = 100
 
+const logIn = async () => {
+  try {
+    const result = await client.login(auth.token).catch((error) => {
+      console.error(error)
+      process.exit(1)
+    })
+    console.log(result)
+  } catch (error) {
+    console.error("couldn't login", error)
+    process.exit(1)
+  }
+}
+
 client.on('ready', (event) => {
   console.log('Connected!')
 })
 
 client.on('error', (error) => {
   console.error(error)
+  process.exit(1)
 })
 
 client.on('disconnect', (event) => {
-  console.log(event)
+  console.error('disconnect', event)
+  process.exit(1)
 })
 
 const sendMessage = (message) => {
@@ -50,9 +65,6 @@ client.on('message', (message) => {
   } else {
     sendMessage(getRandomInt(DEFAULT_MIN, DEFAULT_MAX).toString())
   }
-})
-
-client.login(auth.token).catch((error) => {
-  console.error(error)
-  process.exit(1)
-})
+})(async () => {
+  await logIn()
+})()
