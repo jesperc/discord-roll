@@ -10,11 +10,10 @@ const DEFAULT_MAX = 100
 
 const logIn = async () => {
   try {
-    const result = await client.login(auth.token).catch((error) => {
+    await client.login(auth.token).catch((error) => {
       console.error(error)
       process.exit(1)
     })
-    console.log(result)
   } catch (error) {
     console.error("couldn't login", error)
     process.exit(1)
@@ -65,6 +64,6 @@ client.on('message', (message) => {
   } else {
     sendMessage(getRandomInt(DEFAULT_MIN, DEFAULT_MAX).toString())
   }
-})(async () => {
-  await logIn()
-})()
+})
+
+logIn()
