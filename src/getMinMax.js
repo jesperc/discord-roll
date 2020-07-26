@@ -20,9 +20,7 @@ const getMinMax = (str) => {
             max: number1,
           }
     }
-  } catch (error) {
-    console.error(error)
-  }
+  } catch {}
 
   return null
 }
