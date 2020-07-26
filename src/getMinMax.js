@@ -20,9 +20,11 @@ const getMinMax = (str) => {
             max: number1,
           }
     }
-  } finally {
-    return null
+  } catch (error) {
+    console.error(error)
   }
+
+  return null
 }
 
 module.exports = getMinMax
