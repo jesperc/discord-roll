@@ -3,7 +3,6 @@ const auth = require('../auth.json')
 const getMinMax = require('./getMinMax')
 const getRandomInt = require('./getRandomInt')
 
-const CHANNEL_ID = '347374585500532738'
 const client = new Discord.Client()
 const DEFAULT_MIN = 1
 const DEFAULT_MAX = 100
@@ -41,7 +40,8 @@ const sendMessage = (message) => {
 
 client.on('message', (message) => {
   const { content } = message
-  if (message.channel.id !== CHANNEL_ID || !content.startsWith('!roll')) {
+
+  if (!content.startsWith('!roll')) {
     return
   }
 
