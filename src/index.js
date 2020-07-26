@@ -33,13 +33,19 @@ client.on('disconnect', (event) => {
   process.exit(1)
 })
 
-const sendMessage = (message) => {
-  let channel = client.channels.find((c) => c.id === CHANNEL_ID)
+const sendMessage = (message, channelId) => {
+  let channel = client.channels.find((c) => c.id === channelId)
+  if (!channel) {
+    console.error(`couldn't find channel ${channelId}`)
+    return
+  }
+
   channel.send(message)
 }
 
 client.on('message', (message) => {
-  const { content } = message
+  const { content, channel } = message
+  const channelId = channel.id
 
   if (!content.startsWith('!roll')) {
     return
@@ -57,12 +63,15 @@ client.on('message', (message) => {
   if (content.includes('-')) {
     const interval = getMinMax(content)
     if (interval) {
-      sendMessage(getRandomInt(interval.min, interval.max).toString())
+      sendMessage(
+        getRandomInt(interval.min, interval.max).toString(),
+        channelId
+      )
     } else {
-      sendMessage('invalid input, try again')
+      sendMessage('invalid input, try again', channelId)
     }
   } else {
-    sendMessage(getRandomInt(DEFAULT_MIN, DEFAULT_MAX).toString())
+    sendMessage(getRandomInt(DEFAULT_MIN, DEFAULT_MAX).toString(), channelId)
   }
 })
 
