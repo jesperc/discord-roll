@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const auth = require('../auth.json')
 const getMinMax = require('./getMinMax')
 const getRandomInt = require('./getRandomInt')
+const getStrings = require('./getStrings')
 
 const client = new Discord.Client()
 const DEFAULT_MIN = 1
