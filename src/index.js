@@ -56,6 +56,7 @@ client.on('message', (message) => {
     # Manual for discord-roll
     !roll - get number between 1 and 100
     !roll min-max - get number between min and max
+    !roll str1-str2-...- - get a random string
     `)
     return
   }
@@ -68,7 +69,12 @@ client.on('message', (message) => {
         channelId
       )
     } else {
-      sendMessage('invalid input, try again', channelId)
+      const strings = getStrings(content)
+      if (strings) {
+        sendMessage(strings[getRandomInt(0, strings.length - 1)], channelId)
+      } else {
+        sendMessage('invalid input, try again', channelId)
+      }
     }
   } else {
     sendMessage(getRandomInt(DEFAULT_MIN, DEFAULT_MAX).toString(), channelId)
