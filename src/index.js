@@ -70,7 +70,7 @@ client.on('message', (message) => {
       )
     } else {
       const strings = getStrings(content)
-      if (strings) {
+      if (strings && strings.length > 1) {
         sendMessage(strings[getRandomInt(0, strings.length - 1)], channelId)
       } else {
         sendMessage('invalid input, try again', channelId)
